@@ -43,19 +43,19 @@ function analizarGesto() {
 	var image = document.getElementById("gimg");
 	
 	switch (gestureID){
-		case 00001:
+		case 1:
 			name.innerHTML = "OK";
 			image.src = "http://www.nocturnar.com/comunidad/attachments/ok-jpg.62283/";
 			break;
-		case 00010:
+		case 10:
 			name.innerHTML = "ONE";
 			image.src = "https://s3-sa-east-1.amazonaws.com/leroy-production//uploads/img/products/numero_para_residencia_numero_1_14_5_cmx10_cm_cromado_bemfixa_87963701_0001.jpg_600x600.jpg";
 			break;
-		case 00110:
+		case 110:
 			name.innerHTML = "TWO";
 			image.src = "https://s3-sa-east-1.amazonaws.com/leroy-production//uploads/img/products/numero_para_residencia_numero_2_14_5_cmx10_cm_cromado_bemfixa_87963715_0001.jpg_600x600.jpg";
 			break;
-		case 01110:
+		case 1110:
 			name.innerHTML = "THREE";
 			image.src = "https://s3-sa-east-1.amazonaws.com/leroy-production//uploads/img/products/numero_para_residencia_numero_3_14_5_cmx10_cm_cromado_bemfixa_87963722_0001.jpg_600x600.jpg";
 			break;
