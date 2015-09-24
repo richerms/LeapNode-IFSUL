@@ -32,6 +32,12 @@ article div {
 	width: 50%;
 }
 
+#gimg {	
+	display: block;
+	width: auto; 
+	height: 50%;
+}
+
 table {
 	width: 100%;
 	height: 100%;
