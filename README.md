@@ -17,7 +17,7 @@ e detalhada a seguir.
 6. Salvar os Dados da Captura em um arquivo .JSON (não finalizado)
 
 
-//Servidor para Execução
+1.**Servidor para Execução**
 
    A princípio o site CodePen era utilizado para a criação e visualização do código, diretamente online, mas devido a 
 necessidade de algumas funcionalidades extras, precisou-se de um servidor. Então passamos a usar o Notepad++ como editor
@@ -29,14 +29,14 @@ o qual executa o servidor e carrega os demais arquivos, "leap.html", com a apres
 e "leap.js", com os cálculos, testes e o código em geral.
 
 
-//Calibração dos Valores Máximos da Mão Aberta:
+2.**Calibração dos Valores Máximos da Mão Aberta**
 
    O processo de leitura do sensor (Leap.loop) é iniciado, o código começa a executar o cálculo da distância entre a ponta
 de cada dedo e a palma da mão. Quando o botão "Iniciar o Tracking" é pressionado, esses valores são jogados para um vetor
 que separa os dedos de 0 a 4, do polegar ao mínimo.
 
 
-//Inicialização do Tracking - Exibição dos Valores
+3.**Inicialização do Tracking - Exibição dos Valores**
 
    Após clicar no botão "Iniciar o Tracking", algumas informações e valores aparecem na tela, sendo atualizadas
 constantemente. Incluindo o Tipo da Mão (Direita/Esquerda), valores dos eixos X, Y e Z da Palma da Mão e, para cada dedo,
@@ -45,7 +45,7 @@ e a palma da mão e a Posição do Dedo (Levantado/Dobrado). Este botão possibi
 com o gesto feito, esta fica em um quadrado logo à direita dos dados.
 
 
-//Cálculo Simples dos Valores Adquiridos
+4.**Cálculo Simples dos Valores Adquiridos**
 
    Assim como os Valores Máximos da Mão Aberta são calculados, os valores que estiverem no loop do tracking também serão.
 Esse cálculo é executado por uma função (dist(X,Y)), a qual pega os valores dos três eixos da ponta dos dedos e da palma
@@ -54,12 +54,14 @@ também para sabermos quando um dedo está levantado ou dobrado.
 A distância de calibração, que estava salva no vetor, é dividida então por 1,25**, para afinar os cálculos e determinar 
 a partir de que valores de distância o dedo será considerado dobrado. 
 
+  Ex. do cálculo da distância: ![image](http://www.equacao.mat.br/latex/mimetex.cgi?D=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2})
+
 **_Valor adquirido por cálculo de porcentagem, uma média observando os valores iniciais (com o dedo esticado ao máximo)
 e finais (com o dedo mais próximo o possível da palma da mão) exibidos pelo eixo X do aplicativo "Visualizer" do
 próprio sensor)._
 
 
-//Identificação e Exibição dos Gestos em cima dos Valores Calculados
+5.**Identificação e Exibição dos Gestos em cima dos Valores Calculados**
 
    Com os valores meramente tratados, a separação dos dedos por nome e a função "dedo levantado/dobrado" em
 funcionamento, conseguimos distinguir gestos simples e estáticos. Lógico que com uma precisão baixa devido a falta
@@ -73,17 +75,18 @@ o número é exibido quando os dedos indicador e médio estão com a variável e
 As imagens aparecem no quadrado à direita dos dados, e (por enquanto) são carregadas diretamente da internet.
 
 
-//Salvar os Dados da Captura em um arquivo .JSON (não finalizado)
+6.**Salvar os Dados da Captura em um arquivo .JSON (não finalizado)**
 
    Uma das ideias finais deste projeto em particular é armazenar os dados capturados em uma linguagem que possa ser
 carregada e executada facilmente por outros códigos/programas, como o LeapRecorder, disponível pelo desenvolvedor.
 A estrutura está praticamente feita, precisamos apenas uni-la com o código principal e executar os testes.
 
-<-- Obrigado pela atenção, curiosidade e disponibilidade para ler sobre o projeto. Estamos abertos para opiniões, dicas,
+**<--** Obrigado pela atenção, curiosidade e disponibilidade para ler sobre o projeto. Estamos abertos para opiniões, dicas,
 cobaias e também para tirar dúvidas. Caso tiver algum interesse ou pergunta, envie um e-mail para um de nós:
 * Desenvolvedores:
   * Claus Tessmann - clausrt@hotmail.com
   * Richer Magalhães - richerms@hotmail.com
 * Orientador:
   * Leroi Oliveira - leroioliveira@gmail.com
-//IFSUL Campus Pelotas - UFPEL -->
+  
+  IFSUL Campus Pelotas / UFPEL **-->**
