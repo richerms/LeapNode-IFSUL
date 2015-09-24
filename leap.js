@@ -1,4 +1,5 @@
 var tracking = false;
+var scan = false;
 var metadeDosDedos = [];
 var gestureID;
 
@@ -8,25 +9,25 @@ function calcDistancia(A, B) {
 }
 
 //função do botão para pausar e continuar o tracking
-function iniciar(){
-	tracking = !tracking;
-	
-	if (tracking) {
+function iniciar(){	
+	if (document.getElementById("Start").innerHTML === "Start") {
 		document.getElementById("Start").innerHTML = "Stop";
+		tracking = true;
 	}
 	else {
 		document.getElementById("Start").innerHTML = "Start";
+		scan = false;
 	}
 }
 
-function atualizarDados() {
-	document.getElementById("palmPosition").innerHTML = hand.palmPosition();
+function atualizarDados(hand) {
+	document.getElementById("palmPosition").innerHTML = hand.palmPosition;
 	gestureID = 0;
 	
 	for (var i = 0; i < 5; i++){
-		document.getElementById("finger" + i).innerHTML = hand.fingers[i].dipPosition();
-		document.getElementById("distance" + i).innerHTML = calcDistancia(hand.fingers[i].dipPosition(), hand.palmPosition());
-		if (hand.fingers[i].dipPosition() < metadeDosDedos[i]){
+		document.getElementById("finger" + i).innerHTML = hand.fingers[i].dipPosition;
+		document.getElementById("distance" + i).innerHTML = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+		if (calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition) < metadeDosDedos[i]){
 			document.getElementById("state" + i).innerHTML = "DOWN";
 		}
 		else {
@@ -67,27 +68,31 @@ function analizarGesto() {
 			image.src = "https://s3-sa-east-1.amazonaws.com/leroy-production//uploads/img/products/numero_para_residencia_numero_5_14_5_cmx10_cm_cromado_bemfixa_87963743_0001.jpg_600x600.jpg";
 			break;
 		default:
-			name.innerHTML = "undefined";
+			name.innerHTML = "Não Reconhecido";
 			image.src = "";
 	}
 }
 
-function calibrar() {
+function calibrar(hand) {
 	for (var i = 0; i < 5; i++){
-		metadeDosDedos[i] = calcDistancia(hand.fingers[i].dipPosition(), hand.palmPosition()) / 1.25;	//Um quarto da distancia
+		metadeDosDedos[i] = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition) / 1.25;	//Um quarto da distancia
 	}
+	
+	tracking = false;
+	scan = true;
 }
 
 //main function para o tracking
 Leap.loop(function(frame) {
 	frame.hands.forEach(function(hand) {
 		if (tracking){
-			calibrar(); 
-			
-			while (tracking) {
-				atualizarDados();
-				analizarGesto();
-			}
+			calibrar(hand);
 		}
+			
+		if (scan) {
+			atualizarDados(hand);
+			analizarGesto();
+		}
+		
 	}
 )});
