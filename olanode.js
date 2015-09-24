@@ -4,7 +4,6 @@ var url = require('url');
 
 // Create a server
 http.createServer( function (request, response) {
-	console.log("teste");
    // Parse the request containing file name
    var pathname = url.parse(request.url).pathname;
    
@@ -30,9 +29,9 @@ http.createServer( function (request, response) {
       // Send the response body 
       response.end();
    });   
-}).listen(8081);
+}).listen(8080);
 
 // Console will print the message
-console.log('Server running at http://localhost:8081/');
+console.log('Server running at http://localhost:8080/');
 
 //Referencia: http://www.tutorialspoint.com/nodejs/nodejs_web_module.htm

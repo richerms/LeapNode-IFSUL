@@ -16,7 +16,7 @@
 			<table>
 				<tr>
 					<th colspan="2">Palm Position</th>
-					<td colspan="2">undefined</td>
+					<td colspan="2" id="palmPosition">undefined</td>
 				</tr>
 				<tr>
 					<th>Finger</th>
@@ -26,33 +26,33 @@
 				</tr>
 				<tr>
 					<th>Thumb</th>
-					<td>undefined</td>
-					<td>undefined</td>
-					<td>undefined</td>
+					<td id="finger0">undefined</td>
+					<td id="distance0">undefined</td>
+					<td id="state0">undefined</td>
 				</tr>
 				<tr>
 					<th>Grooming</th>
-					<td>undefined</td>
-					<td>undefined</td>
-					<td>undefined</td>
+					<td id="finger1">undefined</td>
+					<td id="distance1">undefined</td>
+					<td id="state1">undefined</td>
 				</tr>
 				<tr>
 					<th>Middle</th>
-					<td>undefined</td>
-					<td>undefined</td>
-					<td>undefined</td>
+					<td id="finger2">undefined</td>
+					<td id="distance2">undefined</td>
+					<td id="state2">undefined</td>
 				</tr>
 				<tr>
 					<th>Ring</th>
-					<td>undefined</td>
-					<td>undefined</td>
-					<td>undefined</td>
+					<td id="finger3">undefined</td>
+					<td id="distance3">undefined</td>
+					<td id="state3">undefined</td>
 				</tr>
 				<tr>
 					<th>Little</th>
-					<td>undefined</td>
-					<td>undefined</td>
-					<td>undefined</td>
+					<td id="finger4">undefined</td>
+					<td id="distance4">undefined</td>
+					<td id="state4">undefined</td>
 				</tr>
 			</table>
 		</div>	
@@ -61,13 +61,13 @@
 			<table>
 				<tr>
 					<th>Gesture Name:</th>
-					<td>undefined</td>
+					<td id="gn">undefined</td>
 					<th>Gesture ID:</th>
-					<td>undefined</td>
+					<td id="gid">undefined</td>
 				</tr>
 				<tr>
 					<td colspan="4" height="85.71428%">
-						<img href=""></img>
+						<img href="" id="gimg"></img>
 					</td>
 				</tr>
 			</table>
@@ -76,11 +76,14 @@
 
 	<footer>
 		<h1>Data File</h1>
-		<button onclick="">Start</button>
+		<button onclick="iniciar()" id="Start">Start</button>
 		<button onclick="">Record/Save</button>
 		<button onclick="">Clear</button>
 		<div>
 		</div>
 	</footer>
+		
+	<script src="//js.leapmotion.com/leap-0.6.4.js"></script>
+	<script src="leap.js"></script>
 </body>
 </html>
