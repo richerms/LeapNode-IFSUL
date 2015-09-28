@@ -33,7 +33,7 @@ console.log("Servidor rodando...")
 
 
 function salvaArquivo(string){
-	fs.writeFile("test.json", string, function(err) {
+	fs.writeFile("dados.json", string, function(err) {
 	    if(err) {
 	        return console.log(err);
 	    }
