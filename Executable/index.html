@@ -8,7 +8,9 @@
 <body>
 	<header>
 		<h1>LEAP Motion — Hand Gesture Scanner</h1>
-		<p>Please, put your hand over the Leap. In case of doubt, you can ask anything about this project with one of the researchers.</p>
+		<p>Please, put your hand over the Leap and click "Start". In case of doubt, you can ask anything about this project with one of the researchers.</p>
+		<a href="leiame.html">Leia-Me!</a>
+		<a href="readme.html">ReadMe!</a>
 	</header>
 
 	<article>
@@ -77,13 +79,16 @@
 	<footer>
 		<h1>Data File</h1>
 		<button onclick="iniciar()" id="Start">Start</button>
-		<button onclick="">Record/Save</button>
-		<button onclick="">Clear</button>
-		<div>
+		<button onclick="gravar()" id="Gravar">Capture</button>
+		<a href="" target="_blank" id="dados">
+			<input type="submit" value="Download">
+		</a>
+		<div>	
+			<p id="aviso"></p>
 		</div>
 	</footer>
 		
-	<script src="//js.leapmotion.com/leap-0.6.4.js"></script>
+	<script src="leaplibrary.js"></script>
 	<script src="leap.js"></script>
 </body>
 </html>

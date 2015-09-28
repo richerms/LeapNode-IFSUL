@@ -2,6 +2,7 @@ var tracking = false;
 var scan = false;
 var metadeDosDedos = [];
 var gestureID;
+var banco = '{ "Eixos (X,Y,Z)" : [';
 
 //função da distância da palma      
 function calcDistancia(A, B) {
@@ -20,6 +21,13 @@ function iniciar(){
 	}
 }
 
+function gravar(){
+	document.getElementById("dados").href = "http://localhost:8080/?s=" + banco + "]}";
+	banco = '{ "Eixos (X,Y,Z)" : [';
+	var dataehora = new Date();
+	document.getElementById("aviso").innerHTML = "Última captura feita às:  " + dataehora.getHours() + 'h' + dataehora.getMinutes() + 'min' + '<br>Pronta para Download!';
+}
+
 function atualizarDados(hand) {
 	document.getElementById("palmPosition").innerHTML = hand.palmPosition;
 	gestureID = 0;
@@ -27,6 +35,7 @@ function atualizarDados(hand) {
 	for (var i = 0; i < 5; i++){
 		document.getElementById("finger" + i).innerHTML = hand.fingers[i].dipPosition;
 		document.getElementById("distance" + i).innerHTML = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+		banco += "Dedo" + i + ":" + hand.fingers[i].dipPosition + ",";
 		if (calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition) < metadeDosDedos[i]){
 			document.getElementById("state" + i).innerHTML = "DOWN";
 		}

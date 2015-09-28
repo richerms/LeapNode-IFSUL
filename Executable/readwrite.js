@@ -11,8 +11,8 @@ console.log(ROOT_APP_PATH);
 
 app.get("/", function(req, res){
 	
-	salvaArquivo();
-	res.end("Salvou o arquivo");
+	salvaArquivo(req.param('s'));
+	res.end("Sucesso!\nArquivo salvo como: \"dados.json\" \n\nSuccess!\nFile saved as \"dados.json\"" );
 	 
 
 })
@@ -24,17 +24,16 @@ app.get("/learquivo", function(req, res){
 
 })
 
-
 app.post("/", function(req, res){
 	res.end("Olá mundo")
 
 })
-app.listen(3000)
+app.listen(8080)
 console.log("Servidor rodando...")
 
 
-function salvaArquivo(){
-	fs.writeFile("test.txt", "Arquivo alterado!", function(err) {
+function salvaArquivo(string){
+	fs.writeFile("test.json", string, function(err) {
 	    if(err) {
 	        return console.log(err);
 	    }
