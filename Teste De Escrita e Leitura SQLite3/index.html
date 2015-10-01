@@ -27,7 +27,7 @@
 				var i = document.getElementById('idade').value;
 				var xhttp = new XMLHttpRequest();
 				
-				xhttp.open("POST", "http://localhost:8080/data", true);
+				xhttp.open("POST", "http://localhost:8080/save", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send("name=" + n + "&idade=" + i);
 				
