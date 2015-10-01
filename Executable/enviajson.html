@@ -5,16 +5,32 @@
 	</head>
 	<body>
 		<h1>Enviar JSON para server</h1>
-		<button onclick="enviar()">Aperte-me</button>
+		<button onclick="teste()">Aperte-me</button>
 		<br>
+		<div id="Tes"></div>
 		<br>
-		<button id='0' onclick='test()'>0</button>
 		
 		<script>
-			var i = 0;
+			var Obj = {timestamp: 123, 
+						gesture: ' ', 
+						palmPosition: 258, 
+						fingersPosition: 555, 
+						fingersDistance: 666};
 		
-			function test(){
-				document.getElementById('0').innerHTML = i++;
+			function teste(){
+				document.getElementById("Tes").innerHTML = objToString(Obj);
+			}
+			
+			function objToString (obj) {
+				var str = '';
+				
+				for (var p in obj) {
+					if (obj.hasOwnProperty(p)) {
+						str += p + '::' + obj[p] + '\n';
+					}
+				}
+				
+				return str;
 			}
 			
 			function enviar(){

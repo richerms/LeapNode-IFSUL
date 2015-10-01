@@ -25,7 +25,7 @@ function gravar(){
 	document.getElementById("dados").href = "http://localhost:8080/?s=" + banco + "]}";
 	banco = '{ "Eixos (X,Y,Z)" : [';
 	var dataehora = new Date();
-	document.getElementById("aviso").innerHTML = "Última captura feita às:  " + dataehora.getHours() + 'h' + dataehora.getMinutes() + 'min' + '<br>Pronta para Download!';
+	//document.getElementById("aviso").innerHTML = "Última captura feita às:  " + dataehora.getHours() + 'h' + dataehora.getMinutes() + 'min' + '<br>Pronta para Download!';
 }
 
 function atualizarDados(hand) {
@@ -44,6 +44,39 @@ function atualizarDados(hand) {
 			document.getElementById("state" + i).innerHTML = "UP";
 		}
 	}
+}
+
+function objToString (obj) {
+	var str = '';
+				
+	for (var p in obj) {
+		if (obj.hasOwnProperty(p)) {
+			str += p + '::' + obj[p] + '  ';
+		}
+	}
+				
+	return str;
+}
+
+function objetoDados(hand) {
+	var Obj = {
+		timeStamp,
+		gesture,
+		palmPosition,
+		fingersPosition: [],
+		fingersDistance: [],
+	}	
+	
+	Obj.timeStamp = Date.now();
+	Obj.gesture = "Nenhum nome";
+	Obj.palmPosition = hand.palmPosition;
+	
+	for (var i = 0; i < 5; i++){
+		Obj.fingersPosition[i] = hand.fingers[i].dipPosition;
+		Obj.fingersDistance[i] = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+	}
+	
+	return objToString(Obj);
 }
 
 function analizarGesto() {
@@ -101,6 +134,7 @@ Leap.loop(function(frame) {
 		if (scan) {
 			atualizarDados(hand);
 			analizarGesto();
+			document.getElementById("aviso").innerHTML = objetoDados(hand);
 		}
 		
 	}
