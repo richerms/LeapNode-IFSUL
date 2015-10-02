@@ -124,6 +124,22 @@ function calibrar(hand) {
 	scan = true;
 }
 
+//Tem que preparar o readwrite para aceitar todas as propriedades que estou enviando
+function enviarDB(Obj){
+	var str = '';
+				
+	for (var p in obj) {
+		if (obj.hasOwnProperty(p)) {
+			str += p + '=' + obj[p] + '&';		//Talvez o & extra que fique no final atrapalhe.
+		}
+	}
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "http://localhost:8080/save", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(str);
+}
+
 //main function para o tracking
 Leap.loop(function(frame) {
 	frame.hands.forEach(function(hand) {
