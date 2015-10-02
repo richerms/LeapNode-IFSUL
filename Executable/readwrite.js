@@ -8,22 +8,34 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('carmen.db');
 var bodyParser = require('body-parser');
 
-var TABLE_NAME = 'gesture';
+var TABLE_NAME = 'gestures';
 var TABLE_CONTENT = [
 		['id', 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT'],
-		['timestamp', 'INTEGER NOT NULL'],
+		['timestamp', 'INTEGER'],
 		['gesture', 'TEXT'],
-		['palmPosition', 'TEXT'],
-		['thumbDipPosition', 'TEXT'],
-		['indexDipPosition', 'TEXT'],
-		['middleDipPosition', 'TEXT'],
-		['ringDipPosition', 'TEXT'],
-		['littleDipPosition', 'TEXT'],
-		['thumbDistance', 'TEXT'],
-		['indexDistance', 'TEXT'],
-		['middleDistance', 'TEXT'],
-		['ringDistance', 'TEXT'],
-		['littleDistance', 'TEXT']
+		['palmPositionX', 'REAL'],
+		['palmPositionY', 'REAL'],
+		['palmPositionZ', 'REAL'],
+		['fingers0PositionX', 'REAL'],
+		['fingers0PositionY', 'REAL'],
+		['fingers0PositionZ', 'REAL'],
+		['fingers1PositionX', 'REAL'],
+		['fingers1PositionY', 'REAL'],
+		['fingers1PositionZ', 'REAL'],
+		['fingers2PositionX', 'REAL'],
+		['fingers2PositionY', 'REAL'],
+		['fingers2PositionZ', 'REAL'],
+		['fingers3PositionX', 'REAL'],
+		['fingers3PositionY', 'REAL'],
+		['fingers3PositionZ', 'REAL'],
+		['fingers4PositionX', 'REAL'],
+		['fingers4PositionY', 'REAL'],
+		['fingers4PositionZ', 'REAL'],
+		['fingers0Distance', 'REAL'],
+		['fingers1Distance', 'REAL'],
+		['fingers2Distance', 'REAL'],
+		['fingers3Distance', 'REAL'],
+		['fingers4Distance', 'REAL']
 	];
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -59,7 +71,6 @@ app.get("/", function(req, res){
 	
 });
 
-//Não achei como usar o req.body como um array ao invés de um objeto
 app.post("/save", function(req, res){
 	console.log('Request for /save received.')
 	
@@ -71,26 +82,23 @@ app.post("/save", function(req, res){
 				content += ', ';
 		}
 	
-	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES ('  + 
-			'"' + parseInt(req.body.timestamp) + '", ' +
-			'"' + req.body.gesture + '", ' +
-			'"' + req.body.palmPosition + '", ' +
-			'"' + req.body.thumbDipPosition + '", ' +
-			'"' + req.body.indexDipPosition + '", ' +
-			'"' + req.body.middleDipPosition + '", ' +
-			'"' + req.body.ringDipPosition + '", ' +
-			'"' + req.body.littleDipPosition + '", ' +
-			'"' + req.body.thumbDistance + '", ' +
-			'"' + req.body.indexDistance + '", ' +
-			'"' + req.body.middleDistance + '", ' +
-			'"' + req.body.ringDistance + '", ' +
-			'"' + req.body.littleDistance + '")',
+	var data = '"' + req.body.timeStamp + '", '
+			+ '"' + req.body.gesture + '", '
+			+ '"' + req.body.palmPosition + '", '
+			+ '"' + req.body.fingersPosition[0] + '", '
+			+ '"' + req.body.fingersPosition[1] + '", '
+			+ '"' + req.body.fingersPosition[2] + '", '
+			+ '"' + req.body.fingersDistance[0] + '", '
+			+ '"' + req.body.fingersDistance[1] + '", '
+			+ '"' + req.body.fingersDistance[2] + '"';
+	
+	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES (' + data + ')',
 			function (err) {
 				if (err != null)
 					console.log(err);
+				else
+					console.log('Dados salvos com sucesso.');
 			});
-	
-	res.end("Requerimento enviado. Verifique o banco de dados para conferir se os arquivos foram salvos corretamente.")
 })
 
 app.listen(8080);
