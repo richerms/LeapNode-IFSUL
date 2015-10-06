@@ -74,6 +74,8 @@ app.get("/", function(req, res){
 app.post("/save", function(req, res){
 	console.log('Request for /save received.')
 	
+	console.log(req.body);
+	
 	var content = '';
 	
 	for (var i = 1; i < TABLE_CONTENT.length; i++){
@@ -81,16 +83,40 @@ app.post("/save", function(req, res){
 			if (i < TABLE_CONTENT.length - 1)
 				content += ', ';
 		}
+		
+	console.log(content);
+	
+	/*var data = '';
+	
+	for (var p in req.body)
+		if (req.body.hasOwnProperty(p)){
+			data += '"' + req.body[p] + '", ';
+		}
+			
+	data = data.substring(0, data.length - 2);
+	*/
 	
 	var data = '"' + req.body.timeStamp + '", '
-			+ '"' + req.body.gesture + '", '
-			+ '"' + req.body.palmPosition + '", '
-			+ '"' + req.body.fingersPosition[0] + '", '
-			+ '"' + req.body.fingersPosition[1] + '", '
-			+ '"' + req.body.fingersPosition[2] + '", '
-			+ '"' + req.body.fingersDistance[0] + '", '
-			+ '"' + req.body.fingersDistance[1] + '", '
-			+ '"' + req.body.fingersDistance[2] + '"';
+			+ '"' + req.body.gesture + '", ';
+			
+	for (var i = 0; i < 3; i++){
+		data += '"' + req.body.palmPosition[i] + '", ';
+	}		
+			
+	for (var i = 0; i < 5; i++)
+		for (var j = 0; j < 3; j++){
+			data += '"' + req.body.fingersPosition[i][j] + '", ';
+		}
+		
+	for (var i = 0; i < 5; i++){
+			data += '"' + req.body.fingersDistance[i];
+			if (i < 4)
+				data += '", ';
+			else
+				data += '"';
+	}
+	
+	console.log(data);
 	
 	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES (' + data + ')',
 			function (err) {

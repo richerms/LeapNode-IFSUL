@@ -60,23 +60,31 @@ function objToString (obj) {
 
 function objetoDados(hand) {
 	var Obj = {
-		timeStamp,
-		gesture,
-		palmPosition,
+		timeStamp: 0,
+		gesture: "Nenhum nome",
+		palmPosition: 0,
 		fingersPosition: [],
 		fingersDistance: [],
 	}	
 	
+	
 	Obj.timeStamp = Date.now();
-	Obj.gesture = "Nenhum nome";
-	Obj.palmPosition = hand.palmPosition;
+	
+	console.log(hand);
+	console.log(hand.fingers[0].dipPosition[0]);
 	
 	for (var i = 0; i < 5; i++){
-		Obj.fingersPosition[i] = hand.fingers[i].dipPosition;
+		for (var j = 0; j < 3; j++)
+			//Obj.fingersPosition[i][j] = hand.fingers[i].dipPosition[j];
+			
+		
 		Obj.fingersDistance[i] = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+		Obj.palmPosition[i] = hand.palmPosition[i];
 	}
 	
-	return objToString(Obj);
+	console.log(Obj);
+		
+	return Obj;
 }
 
 function analizarGesto() {
@@ -125,19 +133,31 @@ function calibrar(hand) {
 }
 
 //Tem que preparar o readwrite para aceitar todas as propriedades que estou enviando
-function enviarDB(Obj){
-	var str = '';
-				
+function enviarDB(obj){
+	var str = 'timeStamp=' + obj.timeStamp + '&gesture=' + obj.gesture;
+	
+	for (var i = 0; i < 5; i++){
+		for (var j = 0; j < 3; j++)
+			str += '&fingersPosition=' + Obj.fingersPosition[i][j];
+		
+		str += '&fingersDistance=' + Obj.fingersDistance[i];
+		str += '&palmPosition=' + Obj.palmPosition[i];
+	}
+	
+	/*
 	for (var p in obj) {
 		if (obj.hasOwnProperty(p)) {
 			str += p + '=' + obj[p] + '&';		//Talvez o & extra que fique no final atrapalhe.
 		}
-	}
+	}*/
+	
+	console.log(str);
 	
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("POST", "http://localhost:8080/save", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(str);
+	iniciar();
 }
 
 //main function para o tracking
@@ -150,8 +170,10 @@ Leap.loop(function(frame) {
 		if (scan) {
 			atualizarDados(hand);
 			analizarGesto();
-			document.getElementById("aviso").innerHTML = objetoDados(hand);
-		}
-		
+			console.log("Analisei o Gesto");
+			//document.getElementById("aviso").innerHTML = objetoDados(hand);
+			
+			enviarDB(objetoDados(hand));
+		}		
 	}
 )});
