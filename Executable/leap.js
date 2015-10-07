@@ -109,7 +109,7 @@ function enviarDB(hand){
 	var str = 'timeStamp=' + Date.now() + '&gesture=' + "Nenhum nome";
 	
 	for (var j = 0; j < 3; j++)
-		str += '&palmPosition'+ j + '=' + Obj.hand.palmPosition[j];
+		str += '&palmPosition'+ j + '=' + hand.palmPosition[j];
 	
 	for (var i = 0; i < 5; i++)
 		for (var j = 0; j < 3; j++)

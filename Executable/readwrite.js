@@ -74,7 +74,7 @@ app.get("/", function(req, res){
 app.post("/save", function(req, res){
 	console.log('Request for /save received.')
 	
-	console.log(req.body);
+	//console.log(req.body);
 	
 	var content = '';
 	
@@ -84,7 +84,7 @@ app.post("/save", function(req, res){
 				content += ', ';
 		}
 		
-	console.log(content);
+	//console.log(content);
 	
 	var data = '';
 	
@@ -95,28 +95,7 @@ app.post("/save", function(req, res){
 			
 	data = data.substring(0, data.length - 2);
 	
-	/*
-	var data = '"' + req.body.timeStamp + '", '
-			+ '"' + req.body.gesture + '", ';
-			
-	for (var i = 0; i < 3; i++){
-		data += '"' + req.body.palmPosition[i] + '", ';
-	}		
-			
-	for (var i = 0; i < 5; i++)
-		for (var j = 0; j < 3; j++){
-			data += '"' + req.body.fingersPosition[i][j] + '", ';
-		}
-		
-	for (var i = 0; i < 5; i++){
-			data += '"' + req.body.fingersDistance[i];
-			if (i < 4)
-				data += '", ';
-			else
-				data += '"';
-	}
-	*/
-	console.log(data);
+	//console.log(data);
 	
 	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES (' + data + ')',
 			function (err) {
@@ -125,6 +104,8 @@ app.post("/save", function(req, res){
 				else
 					console.log('Dados salvos com sucesso.');
 			});
+	
+	res.send("Dados salvos com sucesso.");
 })
 
 app.listen(8080);
