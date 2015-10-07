@@ -86,7 +86,7 @@ app.post("/save", function(req, res){
 		
 	console.log(content);
 	
-	/*var data = '';
+	var data = '';
 	
 	for (var p in req.body)
 		if (req.body.hasOwnProperty(p)){
@@ -94,8 +94,8 @@ app.post("/save", function(req, res){
 		}
 			
 	data = data.substring(0, data.length - 2);
-	*/
 	
+	/*
 	var data = '"' + req.body.timeStamp + '", '
 			+ '"' + req.body.gesture + '", ';
 			
@@ -115,7 +115,7 @@ app.post("/save", function(req, res){
 			else
 				data += '"';
 	}
-	
+	*/
 	console.log(data);
 	
 	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES (' + data + ')',

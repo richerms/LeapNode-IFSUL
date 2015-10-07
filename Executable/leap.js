@@ -58,34 +58,6 @@ function objToString (obj) {
 	return str;
 }
 
-function objetoDados(hand) {
-	var Obj = {
-		timeStamp: 0,
-		gesture: "Nenhum nome",
-		palmPosition: 0,
-		fingersPosition: [],
-		fingersDistance: [],
-	}	
-	
-	
-	Obj.timeStamp = Date.now();
-	
-	console.log(hand);
-	console.log(hand.fingers[0].dipPosition[0]);
-	
-	for (var i = 0; i < 5; i++){
-		for (var j = 0; j < 3; j++)
-			//Obj.fingersPosition[i][j] = hand.fingers[i].dipPosition[j];
-			
-		
-		Obj.fingersDistance[i] = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
-		Obj.palmPosition[i] = hand.palmPosition[i];
-	}
-	
-	console.log(Obj);
-		
-	return Obj;
-}
 
 function analizarGesto() {
 	document.getElementById("gid").innerHTML = gestureID;
@@ -133,24 +105,19 @@ function calibrar(hand) {
 }
 
 //Tem que preparar o readwrite para aceitar todas as propriedades que estou enviando
-function enviarDB(obj){
-	var str = 'timeStamp=' + obj.timeStamp + '&gesture=' + obj.gesture;
+function enviarDB(hand){
+	var str = 'timeStamp=' + Date.now() + '&gesture=' + "Nenhum nome";
 	
-	for (var i = 0; i < 5; i++){
+	for (var j = 0; j < 3; j++)
+		str += '&palmPosition'+ j + '=' + Obj.hand.palmPosition[j];
+	
+	for (var i = 0; i < 5; i++)
 		for (var j = 0; j < 3; j++)
-			str += '&fingersPosition=' + Obj.fingersPosition[i][j];
+			str += '&fingers' + i + 'Position' + j + '=' + hand.fingers[i].dipPosition[j];
 		
-		str += '&fingersDistance=' + Obj.fingersDistance[i];
-		str += '&palmPosition=' + Obj.palmPosition[i];
-	}
-	
-	/*
-	for (var p in obj) {
-		if (obj.hasOwnProperty(p)) {
-			str += p + '=' + obj[p] + '&';		//Talvez o & extra que fique no final atrapalhe.
-		}
-	}*/
-	
+	for (var i = 0; i < 5; i++)	
+		str += '&fingers' + i + 'Distance=' + calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+		
 	console.log(str);
 	
 	var xhttp = new XMLHttpRequest();
@@ -173,7 +140,7 @@ Leap.loop(function(frame) {
 			console.log("Analisei o Gesto");
 			//document.getElementById("aviso").innerHTML = objetoDados(hand);
 			
-			enviarDB(objetoDados(hand));
+			enviarDB(hand);
 		}		
 	}
 )});
