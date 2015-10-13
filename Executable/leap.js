@@ -95,6 +95,7 @@ function analizarGesto() {
 	}
 }
 
+//Existe uma função extend da classe finger que poderia executar essa função apenas para dedo em pé e dobrado.
 function calibrar(hand) {
 	for (var i = 0; i < 5; i++){
 		metadeDosDedos[i] = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition) / 1.25;	//Um quarto da distancia
@@ -116,7 +117,12 @@ function enviarDB(hand){
 			str += '&fingers' + i + 'Position' + j + '=' + hand.fingers[i].dipPosition[j];
 		
 	for (var i = 0; i < 5; i++)	
-		str += '&fingers' + i + 'Distance=' + calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+		str += '&fingers' + i + 'PalmDistance=' + calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
+	
+	for (var i = 0; i < 5; i++)
+		for (var j = 0; j < 5; j++)
+			if (i != j)
+				str += '&distanceBetweenFinger' + i + 'AndFinger' + j + '=' + calcDistancia(hand.fingers[i].dipPosition, hand.fingers[j].dipPosition);
 		
 	console.log(str);
 	

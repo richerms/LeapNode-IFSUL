@@ -35,7 +35,27 @@ var TABLE_CONTENT = [
 		['fingers1Distance', 'REAL'],
 		['fingers2Distance', 'REAL'],
 		['fingers3Distance', 'REAL'],
-		['fingers4Distance', 'REAL']
+		['fingers4Distance', 'REAL'],
+		['distanceBetweenFinger0AndFinger1', 'REAL'],
+		['distanceBetweenFinger0AndFinger2', 'REAL'],
+		['distanceBetweenFinger0AndFinger3', 'REAL'],
+		['distanceBetweenFinger0AndFinger4', 'REAL'],
+		['distanceBetweenFinger1AndFinger0', 'REAL'],
+		['distanceBetweenFinger1AndFinger2', 'REAL'],
+		['distanceBetweenFinger1AndFinger3', 'REAL'],
+		['distanceBetweenFinger1AndFinger4', 'REAL'],
+		['distanceBetweenFinger2AndFinger0', 'REAL'],
+		['distanceBetweenFinger2AndFinger1', 'REAL'],
+		['distanceBetweenFinger2AndFinger3', 'REAL'],
+		['distanceBetweenFinger2AndFinger4', 'REAL'],
+		['distanceBetweenFinger3AndFinger0', 'REAL'],
+		['distanceBetweenFinger3AndFinger1', 'REAL'],
+		['distanceBetweenFinger3AndFinger2', 'REAL'],
+		['distanceBetweenFinger3AndFinger4', 'REAL'],
+		['distanceBetweenFinger4AndFinger0', 'REAL'],
+		['distanceBetweenFinger4AndFinger1', 'REAL'],
+		['distanceBetweenFinger4AndFinger2', 'REAL'],
+		['distanceBetweenFinger4AndFinger3', 'REAL']
 	];
 
 app.use(bodyParser.urlencoded({extended: false}));
