@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Envia JSON</title>
+	</head>
+	<body>
+		<h1>Enviar JSON para server</h1>
+		<button onclick="teste()">Aperte-me</button>
+		<br>
+		<div id="Tes"></div>
+		<br>
+		
+		<script>
+			var Obj = {timestamp: 123, 
+						gesture: ' ', 
+						palmPosition: 258, 
+						fingersPosition: 555, 
+						fingersDistance: 666};
+		
+			function teste(){
+				document.getElementById("Tes").innerHTML = objToString(Obj);
+			}
+			
+			function objToString (obj) {
+				var str = '';
+				
+				for (var p in obj) {
+					if (obj.hasOwnProperty(p)) {
+						str += p + '::' + obj[p] + '\n';
+					}
+				}
+				
+				return str;
+			}
+			
+			function enviar(){
+				var filhoJ = 'timestamp=129&' + 
+							'gesture=Teste&' + 
+							'palmPosition=Teste&' + 
+							'thumbDipPosition=Teste&' + 
+							'indexDipPosition=Teste&' + 
+							'middleDipPosition=Teste&' + 
+							'ringDipPosition=Teste&' + 
+							'littleDipPosition=Teste&' + 
+							'thumbDistance=Teste&' + 
+							'indexDistance=Teste&' + 
+							'middleDistance=Teste&' + 
+							'ringDistance=Teste&' + 
+							'littleDistance=Teste';
+			
+
+				
+				var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", "http://localhost:8080/save", true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send(filhoJ);
+				
+			}
+			
+			function salva() {
+				var xhttp = new XMLHttpRequest();
+				
+				xhttp.open("POST", "http://localhost:8080/save", true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send(filhoJ);
+			}
+		</script>
+	</body>
+</html>
