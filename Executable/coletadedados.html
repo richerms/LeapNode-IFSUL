@@ -8,9 +8,11 @@
 <body>
 	<header>
 		<h1>LEAP Motion — Hand Gesture Scanner</h1>
-		<p>Please, put your hand over the Leap and click "Start". In case of doubt, you can ask anything about this project with one of the researchers.</p>
-		<a href="leiame.html">Leia-Me!</a>
-		<a href="readme.html">ReadMe!</a>
+		<p>Please, put your hand over the Leap then click "Start". Click "Next" until the program stop. <br>
+		   Note 1: The numbers will repeat twice. <br>
+		   Note 2: In case of doubt, you can ask anything about this project with one of the researchers.
+		<a target="_blank" href="leiame.html">Leia-Me!</a>
+		<a target="_blank" href="readme.html">ReadMe!</a></p>
 	</header>
 
 	<article>
@@ -19,6 +21,10 @@
 				<tr>
 					<th colspan="2">Palm Position</th>
 					<td colspan="2" id="palmPosition">undefined</td>
+				</tr>	
+				<tr>
+					<th colspan="2">Hand Type</th>
+					<td colspan="2" id="handtype">undefined</td>
 				</tr>
 				<tr>
 					<th>Finger</th>
@@ -26,6 +32,7 @@
 					<th>Dist. from Palm</th>
 					<th>State</th>
 				</tr>
+
 				<tr>
 					<th>Thumb</th>
 					<td id="finger0">undefined</td>
@@ -33,7 +40,7 @@
 					<td id="state0">undefined</td>
 				</tr>
 				<tr>
-					<th>Grooming</th>
+					<th>Index</th>
 					<td id="finger1">undefined</td>
 					<td id="distance1">undefined</td>
 					<td id="state1">undefined</td>
@@ -67,6 +74,8 @@
 
 	<footer>
 		<h1>Data File</h1>
+		Name: 
+		<input type="text" id="nome"></input>
 		<button onclick="iniciar()" id="Start">Start</button>
 		<button onclick="next()" id="Next">Next</button>		
 		<button onclick="gravar()" id="Data">Captured Data</button>

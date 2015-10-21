@@ -2,8 +2,9 @@ var tracking = false;
 var scan = false;
 var metadeDosDedos = [];
 var gestureID;
-var r = 0;
+var r = -1;
 var enviar = false;
+var b = true;
 var flag = true;
 
 //função da distância da palma      
@@ -16,14 +17,14 @@ function iniciar(){
 	if (document.getElementById("Start").innerHTML === "Start") {
 		document.getElementById("Start").innerHTML = "Stop";
 		tracking = true;
-		document.getElementById("Gesture").innerHTML = "I";		
+		document.getElementById("Gesture").innerHTML = "Open";		
 		document.getElementById("gimg").src = "img" + r + ".jpg";
 		r++;
 	}
 	else {
 		document.getElementById("Start").innerHTML = "Start";
 		scan = false;
-		r = 0;
+		r = -1;
 		document.getElementById("gimg").src = "img" + r + ".jpg";
 	}
 }
@@ -38,12 +39,27 @@ function save(){
 	var shyriu = document.getElementById("Gesture");
 
 	switch (r){
-		case 0: shyriu.innerHTML = "I";		r++;break
-		case 1: shyriu.innerHTML = "B"; 	r++;break
-		case 2: shyriu.innerHTML = "8"; 	r++;break
-		case 3: shyriu.innerHTML = "2"; 	r++;break
-		case 4: shyriu.innerHTML = "Open"; 	r++;break
-		case 5: shyriu.innerHTML = "Close";	r=0;break 
+		case 0: shyriu.innerHTML = "0";		r++;break
+		case 1: shyriu.innerHTML = "1"; 	r++;break
+		case 2: shyriu.innerHTML = "2"; 	r++;break
+		case 3: shyriu.innerHTML = "3"; 	r++;break
+		case 4: shyriu.innerHTML = "4"; 	r++;break
+		case 5: shyriu.innerHTML = "5"; 	r++;break
+		case 6: shyriu.innerHTML = "6"; 	r++;break
+		case 7: shyriu.innerHTML = "7"; 	r++;break
+		case 8: shyriu.innerHTML = "8"; 	r++;break		
+		case 9: shyriu.innerHTML = "9";
+				if (b){
+					r=0;
+					b = false;
+					break 
+				}
+				else{
+					r++;
+					break 
+				}
+		case 10: shyriu.innerHTML = "Close"; r++;break
+		case 11: location.replace("done.html");break
 	}
 
 }
@@ -59,7 +75,7 @@ function atualizarDados(hand) {
 	for (var i = 0; i < 5; i++){
 		document.getElementById("finger" + i).innerHTML = hand.fingers[i].dipPosition;
 		document.getElementById("distance" + i).innerHTML = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
-	//	banco += "Dedo" + i + ":" + hand.fingers[i].dipPosition + ",";
+		document.getElementById("handtype").innerHTML = hand.type;
 		if (calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition) < metadeDosDedos[i]){
 			document.getElementById("state" + i).innerHTML = "DOWN";
 		}
@@ -95,7 +111,7 @@ function calibrar(hand) {
 
 //Tem que preparar o readwrite para aceitar todas as propriedades que estou enviando
 function enviarDB(hand){
-	var str = 'timeStamp=' + Date.now() + '&gesture=' + document.getElementById("Gesture").innerHTML;	
+	var str = 'timeStamp=' + Date.now() + '&nome=' + document.getElementById('nome').value + '&gesture=' + document.getElementById("Gesture").innerHTML;
 	for (var j = 0; j < 3; j++)
 		str += '&palmPosition'+ j + '=' + hand.palmPosition[j];
 	

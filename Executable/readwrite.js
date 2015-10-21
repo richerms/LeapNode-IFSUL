@@ -12,6 +12,7 @@ var TABLE_NAME = 'gestures';
 var TABLE_CONTENT = [
 		['id', 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT'],
 		['timestamp', 'INTEGER'],
+		['nome', 'TEXT'],
 		['gesture', 'TEXT'],
 		['palmPositionX', 'REAL'],
 		['palmPositionY', 'REAL'],
