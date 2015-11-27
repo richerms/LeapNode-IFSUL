@@ -5,57 +5,82 @@ var express = require('express')
 var fs = require('fs');
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('carmen.db');
+var db = new sqlite3.Database('consuelo.db');
 var bodyParser = require('body-parser');
 
 var TABLE_NAME = 'gestures';
 var TABLE_CONTENT = [
 		['id', 'INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT'],
 		['timestamp', 'INTEGER'],
+		['name', 'TEXT'],
 		['gesture', 'TEXT'],
-		['palmPositionX', 'REAL'],
-		['palmPositionY', 'REAL'],
-		['palmPositionZ', 'REAL'],
-		['fingers0PositionX', 'REAL'],
-		['fingers0PositionY', 'REAL'],
-		['fingers0PositionZ', 'REAL'],
-		['fingers1PositionX', 'REAL'],
-		['fingers1PositionY', 'REAL'],
-		['fingers1PositionZ', 'REAL'],
-		['fingers2PositionX', 'REAL'],
-		['fingers2PositionY', 'REAL'],
-		['fingers2PositionZ', 'REAL'],
-		['fingers3PositionX', 'REAL'],
-		['fingers3PositionY', 'REAL'],
-		['fingers3PositionZ', 'REAL'],
-		['fingers4PositionX', 'REAL'],
-		['fingers4PositionY', 'REAL'],
-		['fingers4PositionZ', 'REAL'],
-		['fingers0Distance', 'REAL'],
-		['fingers1Distance', 'REAL'],
-		['fingers2Distance', 'REAL'],
-		['fingers3Distance', 'REAL'],
-		['fingers4Distance', 'REAL'],
-		['distanceBetweenFinger0AndFinger1', 'REAL'],
-		['distanceBetweenFinger0AndFinger2', 'REAL'],
-		['distanceBetweenFinger0AndFinger3', 'REAL'],
-		['distanceBetweenFinger0AndFinger4', 'REAL'],
-		['distanceBetweenFinger1AndFinger0', 'REAL'],
-		['distanceBetweenFinger1AndFinger2', 'REAL'],
-		['distanceBetweenFinger1AndFinger3', 'REAL'],
-		['distanceBetweenFinger1AndFinger4', 'REAL'],
-		['distanceBetweenFinger2AndFinger0', 'REAL'],
-		['distanceBetweenFinger2AndFinger1', 'REAL'],
-		['distanceBetweenFinger2AndFinger3', 'REAL'],
-		['distanceBetweenFinger2AndFinger4', 'REAL'],
-		['distanceBetweenFinger3AndFinger0', 'REAL'],
-		['distanceBetweenFinger3AndFinger1', 'REAL'],
-		['distanceBetweenFinger3AndFinger2', 'REAL'],
-		['distanceBetweenFinger3AndFinger4', 'REAL'],
-		['distanceBetweenFinger4AndFinger0', 'REAL'],
-		['distanceBetweenFinger4AndFinger1', 'REAL'],
-		['distanceBetweenFinger4AndFinger2', 'REAL'],
-		['distanceBetweenFinger4AndFinger3', 'REAL']
+		['palmPX', 'REAL'],
+		['palmPY', 'REAL'],
+		['palmPZ', 'REAL'],
+		['f0PosX', 'REAL'],
+		['f0PosY', 'REAL'],
+		['f0PosZ', 'REAL'],
+		['f1PosX', 'REAL'],
+		['f1PosY', 'REAL'],
+		['f1PosZ', 'REAL'],
+		['f2PosX', 'REAL'],
+		['f2PosY', 'REAL'],
+		['f2PosZ', 'REAL'],
+		['f3PosX', 'REAL'],
+		['f3PosY', 'REAL'],
+		['f3PosZ', 'REAL'],
+		['f4PosX', 'REAL'],
+		['f4PosY', 'REAL'],
+		['f4PosZ', 'REAL'],
+		['Df0palm', 'REAL'],
+		['Df1palm', 'REAL'],
+		['Df2palm', 'REAL'],
+		['Df3palm', 'REAL'],
+		['Df4palm', 'REAL'],
+		['Df0f1', 'REAL'],
+		['Df0f2', 'REAL'],
+		['Df0f3', 'REAL'],
+		['Df0f4', 'REAL'],
+		['Df1f0', 'REAL'],
+		['Df1f2', 'REAL'],
+		['Df1f3', 'REAL'],
+		['Df1f4', 'REAL'],
+		['Df2f0', 'REAL'],
+		['Df2f1', 'REAL'],
+		['Df2f3', 'REAL'],
+		['Df2f4', 'REAL'],
+		['Df3f0', 'REAL'],
+		['Df3f1', 'REAL'],
+		['Df3f2', 'REAL'],
+		['Df3f4', 'REAL'],
+		['Df4f0', 'REAL'],
+		['Df4f1', 'REAL'],
+		['Df4f2', 'REAL'],
+		['Df4f3', 'REAL'],
+		['handDirX', 'REAL'],
+		['handDirY', 'REAL'],
+		['handDirZ', 'REAL'],
+		['f0DirX', 'REAL'],
+		['f0DirY', 'REAL'],
+		['f0DirZ', 'REAL'],
+		['f1DirX', 'REAL'],
+		['f1DirY', 'REAL'],
+		['f1DirZ', 'REAL'],
+		['f2DirX', 'REAL'],
+		['f2DirY', 'REAL'],
+		['f2DirZ', 'REAL'],
+		['f3DirX', 'REAL'],
+		['f3DirY', 'REAL'],
+		['f3DirZ', 'REAL'],
+		['f4DirX', 'REAL'],
+		['f4DirY', 'REAL'],
+		['f4DirZ', 'REAL'],
+		['f0Ext', 'REAL'],
+		['f1Ext', 'REAL'],
+		['f2Ext', 'REAL'],
+		['f3Ext', 'REAL'],
+		['f4Ext', 'REAL'],
+		['Confidence', 'REAL']
 	];
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -119,13 +144,13 @@ app.post("/save", function(req, res){
 	
 	db.run('INSERT INTO ' + TABLE_NAME + ' (' + content + ') VALUES (' + data + ')',
 			function (err) {
-				if (err != null)
+				if (err != null){
 					console.log(err);
+					res.send("Erro ao salvar os dados.");
+				}
 				else
-					console.log('Dados salvos com sucesso.');
+					res.send("Dados salvos com sucesso.");
 			});
-	
-	res.send("Dados salvos com sucesso.");
 })
 
 app.listen(8080);
