@@ -5,6 +5,7 @@ var enviar = false;
 var b = true;
 var flag = true;
 
+
 function calcDistancia(A, B) {
 	return Math.sqrt(Math.pow(A[0] - B[0], 2) + Math.pow(A[1] - B[1], 2) + Math.pow(A[2] - B[2], 2));
 }
@@ -68,6 +69,7 @@ function atualizarDados(hand) {
 		document.getElementById("finger" + i).innerHTML = hand.fingers[i].dipPosition;
 		document.getElementById("distance" + i).innerHTML = calcDistancia(hand.fingers[i].dipPosition, hand.palmPosition);
 		document.getElementById("handtype").innerHTML = hand.type;
+
 		if (!hand.fingers[i].extended){
 			document.getElementById("state" + i).innerHTML = "DOWN";
 		}
