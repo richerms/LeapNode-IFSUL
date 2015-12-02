@@ -5,11 +5,7 @@ var express = require('express')
 var fs = require('fs');
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
-<<<<<<< HEAD
 var db = new sqlite3.Database('consuelo.db');
-=======
-var db = new sqlite3.Database('carmen.db');
->>>>>>> master
 var bodyParser = require('body-parser');
 
 var TABLE_NAME = 'gestures';
