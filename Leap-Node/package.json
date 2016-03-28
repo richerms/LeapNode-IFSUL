@@ -1,0 +1,20 @@
+{
+  "name": "Leap-Node",
+  "description": "Application of hand gesture recognition using Leap Motion",
+  "author": "Claus R Tessman <clausrt@outlook.com>, Richer Magalhães <richerms@hotmail.com>, Leroi Oliveira <leroioliveira@gmail.com>",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.6",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.1",
+    "express-load": "^1.1.15",
+    "html": "0.0.10",
+    "method-override": "^2.3.5",
+    "node-weka": "^0.0.8",
+    "sqlite3": "^3.1.1"
+  }
+}

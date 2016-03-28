@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>LEAP Motion — Hand Gesture Scanner</title>
+	<meta charset='UTF-8'>
+	<link rel="stylesheet" href="stylesheets\collectTable.css" >
+</head>
+
+<body>
+	<header>
+		<h1>LEAP Motion — Hand Gesture Scanner</h1>
+		<p>Please, put your hand over the Leap then click "Start". Click "Next" until the program stop. <br>
+		   Note 1: The numbers will repeat twice. <br>
+		   Note 2: In case of doubt, you can ask anything about this project with one of the researchers.
+		</p>
+	</header>
+
+	<article>
+		<div>
+			<table>
+				<tr>
+					<th colspan="2">Palm Position</th>
+					<td colspan="2" id="palmPosition">undefined</td>
+				</tr>	
+				<tr>
+					<th colspan="2">Hand Type</th>
+					<td colspan="2" id="handtype">undefined</td>
+				</tr>
+				<tr>
+					<th>Finger</th>
+					<th>Position</th>
+					<th>Dist. from Palm</th>
+					<th>State</th>
+				</tr>
+
+				<tr>
+					<th>Thumb</th>
+					<td id="finger0">undefined</td>
+					<td id="distance0">undefined</td>
+					<td id="state0">undefined</td>
+				</tr>
+				<tr>
+					<th>Index</th>
+					<td id="finger1">undefined</td>
+					<td id="distance1">undefined</td>
+					<td id="state1">undefined</td>
+				</tr>
+				<tr>
+					<th>Middle</th>
+					<td id="finger2">undefined</td>
+					<td id="distance2">undefined</td>
+					<td id="state2">undefined</td>
+				</tr>
+				<tr>
+					<th>Ring</th>
+					<td id="finger3">undefined</td>
+					<td id="distance3">undefined</td>
+					<td id="state3">undefined</td>
+				</tr>
+				<tr>
+					<th>Little</th>
+					<td id="finger4">undefined</td>
+					<td id="distance4">undefined</td>
+					<td id="state4">undefined</td>
+				</tr>
+			</table>
+		</div>	
+		
+		<div>Gesture Name:					
+			<p id="Gesture"></p>
+			<img src="" id="gimg"></img>
+		</div>
+	</article>
+
+	<footer>
+		<h1>Data File</h1>
+		Name: 
+		<input type="text" id="nome"></input>
+		<button onclick="iniciar()" id="Start">Start</button>
+		<button onclick="next()" id="Next">Continue</button>		
+		<!--button onclick="gravar()" id="Data">Captured Data</button-->
+		</a>
+		<div>	
+			<p id="aviso"></p>
+		</div>
+	</footer>
+		
+	<script src="javascripts\leaplibrary.js"></script>
+	<script src="javascripts\coletadedados.js"></script>
+</body>
+</html>

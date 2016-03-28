@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap-3.3.6/docs/favicon.ico">
+
+    <title>LeapNode</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="bootstrap-3.3.6/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesheets/cover.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="bootstrap-3.3.6/docs/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 style="color:#666; font-style:italic" class="modal-title" id="myModalLabel">Contacts</h4>
+        </div>
+        <div class="modal-body">
+          <h4 style="color:#666;  font-style:italic">Thank you for looking for us!</h4>
+
+          <p style="color:#999; margin:30px 20px 30px">Here are some contacts and informations about the Developers and the Universities, that help us with manufature and laboratories. We are open to tips, suggestions and for questions too. If you have interest or a doubt, send us an e-mail!</p>
+
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Universities
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <h4 align="left" style="color:#666; padding-left:50px;">IFSul Campus Pelotas</h4>
+                  <p style="color:#999">INSERIR UM BLABLABLA</p>
+                  <h4 align="left" style="color:#666; padding-left:50px;">UFPel Campus Porto</h4>
+                  <p style="color:#999">INSERIR UM BLABLABLA</p>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Developers' Contacts
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <h4 align="left" style="color:#666; padding-left:50px;">Developers:</h4>
+                  <p style="color:#999">Claus Tessmann: clausrt@outlook.com</p>
+                  <p style="color:#999">Richer Magalhães: richerms@hotmail.com</p>
+                  <h4 align="left" style="color:#666; padding-left:50px;">Mentor:</h4>
+                  <p style="color:#999">Leroi Oliveira: leroioliveira@gmail.com</p>
+                  <h4 align="left" style="color:#666; padding-left:50px;">GitHub:</h4>
+                  <a href="https://github.com/richerms/LeapNode-IFSUL" style="color:#999">https://github.com/richerms/LeapNode-IFSUL</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+        </div>
+        <div class="modal-footer">
+          <button style="background-color:#32CD99; color:#fff; border-color:#32CD99" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 style="color:#32CD99" class="masthead-brand">Welcome</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="welcome.html">Home</a></li>
+                  <li><a href="coletadedados.html">Application</a></li>
+                  <li><a data-toggle="modal" data-target="#myModal">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        <div style="background-color:grey; border-radius:48px; height:400px; padding:40px">
+          <div class="inner cover">
+            <h1 class="cover-heading">LeapNode</h1>
+            <p class="lead">Our purpose is to help deaf children to easily learn portuguese through LIBRAS apps.</p>
+            <p style="padding:15px" class="lead">
+              <a href="coletadedados.html" style="background-color:#32CD99; color:#333; border-color:#333" class="btn btn-lg btn-default">Go to the App!</a>
+            </p>
+          </div>
+
+          <div class="container" style="width:100%;">
+            <img style="width: 26%; float:left; margin:20px" src="images/ifsul.png" class="img-responsive">
+            <img style="width: 17%; float:right" src="images/ufpel.png" class="img-responsive">
+          </div>
+        </div>
+
+
+          <div class="mastfoot">
+
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+        </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="bootstrap-3.3.6/docs/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="bootstrap-3.3.6/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap-3.3.6/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
