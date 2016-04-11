@@ -7,6 +7,7 @@ var express = require('express')
    , sqlite3 = require('sqlite3').verbose()
    , app = express()
    , server = require('http').Server(app)
+   , synaptic = require('synaptic')
    ;
 global.DATABASE = new sqlite3.Database('collectedData.db');
 
